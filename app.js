@@ -6,25 +6,98 @@ function getComputerChoice(){
 function playRound(playerSelection, computerSelection){
     const normalizePlayerSelection = playerSelection.toLowerCase();
     //logic for you win
-    if(normalizePlayerSelection === "rock" && computerSelection === "scissors"){
-        return `You win!, ${normalizePlayerSelection} beats ${computerSelection}`;
-    }else if(normalizePlayerSelection === "scissors" && computerSelection === "paper"){
-        return `You win!, ${normalizePlayerSelection} beats ${computerSelection}`;
-    }else if(normalizePlayerSelection === "paper" && computerSelection === "rock"){
-        return `You win!, ${normalizePlayerSelection} beats ${computerSelection}`;
-    }
+    if(
+        (normalizePlayerSelection === "rock" && computerSelection === "scissors") ||
+        (normalizePlayerSelection === "scissors" && computerSelection === "paper") ||
+        (normalizePlayerSelection === "paper" && computerSelection === "rock")){
+            return true;
+        }
+  
     //logic for you lose
-    if(computerSelection === "rock" && normalizePlayerSelection === "scissors"){
-        return `You lose!, ${computerSelection} beats ${normalizePlayerSelection}`;
-    }else if (computerSelection === "sissors" && normalizePlayerSelection === "paper"){
-        return `You lose!, ${computerSelection} beats ${normalizePlayerSelection}`;
-    }else if (computerSelection === "paper" && normalizePlayerSelection === "rock"){
-        return `You lose!, ${computerSelection} beats ${normalizePlayerSelection}`;
+    if(
+        (computerSelection === "rock" && normalizePlayerSelection === "scissors") ||
+        (computerSelection === "sissors" && normalizePlayerSelection === "paper") ||
+        (computerSelection === "paper" && normalizePlayerSelection === "rock")){
+        return false;
     }
-
-    //return draw
-    return "DRAW!!!";
 }
 
-const player = "rock";
-console.log(playRound(player, getComputerChoice()));
+//corre el juego por;
+function game(){
+    //pedir numero de rondas > 0
+    while(true) {
+        n = prompt("Numero de rondas");
+        if(n > 0 || n === null) break;
+    }
+    //jugar x rondas
+    const winner = playRounds(n);
+    // mostrar ganador
+    alert(winner);
+}
+
+// ejecuta las rondas n veces
+function playRounds(n){
+    const rondas = parseInt(n);
+    //variables para guardar las victiores de los jugadores
+    let playerWins = 0;
+    let computerWins = 0;
+    // jugar n veces
+    for(let i = 0; i < n; i++){
+        //pedir y validar entrada de usuario
+        const userInput = askAndValidateInput();
+        // jugar y asignar victoria
+        const booleanResult = playRound(userInput, getComputerChoice());
+        if(booleanResult){
+            playerWins++;
+        }
+        else if(!booleanResult){
+            computerWins++;
+        }
+    }
+
+    const winnerMessage = winner(playerWins, computerWins);
+    return winnerMessage;
+}
+
+// pide entrada al usuario
+function askInput(){
+    const input = prompt("rock, paper or scissors");
+    return input;
+}
+
+// valida que la entrada sea de un valor apropiado
+function checkInput(s){
+    // palabras validas
+    const validChoices = ["rock", "paper", "scissors"]
+    // verificar que s sea una palabra valida
+    const normalizeS = s.toLowerCase();
+    if(validChoices.includes(normalizeS)){
+        return true;
+    }
+    return false;
+}
+
+// pide al usuario la entrada hasta que sea valida;
+function askAndValidateInput(){
+    let choice;
+    while(true){
+        choice = askInput();
+        if(checkInput(choice)){
+            break;
+        }
+    }
+    return choice;
+}
+
+// retorna al ganador del juego
+function winner(player1, player2){
+    if(player1 > player2){
+        return `You win ${player1}-${player2}`
+    }else if(player1 < player2){
+        return `You lose ${player2}-${player1}`
+    }
+    return "Draw";
+}
+
+
+game();
