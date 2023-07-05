@@ -16,13 +16,13 @@ function playRound(playerSelection, computerSelection){
     //logic for you lose
     if(
         (computerSelection === "rock" && normalizePlayerSelection === "scissors") ||
-        (computerSelection === "sissors" && normalizePlayerSelection === "paper") ||
+        (computerSelection === "scissors" && normalizePlayerSelection === "paper") ||
         (computerSelection === "paper" && normalizePlayerSelection === "rock")){
         return false;
     }
 }
 
-//corre el juego por;
+//corre el juego
 function game(){
     //pedir numero de rondas > 0
     while(true) {
