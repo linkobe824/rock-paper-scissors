@@ -100,4 +100,4 @@ function winner(player1, player2){
 }
 
 
-game();
+// game();
