@@ -100,4 +100,36 @@ function winner(player1, player2){
 }
 
 
-// game();
+const choiceBtn = document.querySelectorAll('.choice')
+
+choiceBtn.forEach(btn => {
+    btn.addEventListener('click', actionPlayRound);
+})
+
+// ejecuta las rondas n veces
+function actionPlayRound() {
+    const playerPoints = document.querySelector('#player-points');
+    const computerPoints = document.querySelector('#computer-points');
+    let playerPointsCount = parseInt(playerPoints.innerHTML);
+    let computerPointsCount = parseInt(computerPoints.innerHTML);
+
+    const gameWinner = playRound(this.value, getComputerChoice());
+    if(gameWinner){
+        playerPointsCount++;
+        playerPoints.textContent = playerPointsCount;
+    }else if (!gameWinner){
+        computerPointsCount++;
+        computerPoints.textContent = computerPointsCount;
+    }
+
+    const winnerPara =  document.querySelector('.winner');
+    if(playerPointsCount === 5){
+        winnerPara.textContent = 'Player Wins!!';
+        this.disabled = true;
+    }
+    else if(computerPointsCount === 5){
+        winnerPara.textContent = 'Computer Wins!!';
+        this.disabled = true;
+    }
+
+}

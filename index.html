@@ -5,11 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rock Papper Scissors!!</title>
   <link rel="stylesheet" href="/styles/styles.css">
-  <script src="scripts/app.js" defer></script>
+  <script src="/scripts/app.js" defer></script>
 </head>
 <body>
-  <script src="app.js"></script>
-</body>
   <div class="container">
     <div class="title-container">
       <h1>Rock Paper Scissors</h1>
@@ -17,18 +15,23 @@
     <div class="points-container">
       <div class="point-box player">
         <p>Player</p>
-        <p class="points">0</p>
+        <p class="points" id="player-points">0</p>
       </div>
       <div class="point-box computer">
         <p>Computer</p>
-        <p class="points">0</p>
+        <p class="points" id="computer-points">0</p>
       </div>
+    </div>
+    <div class="winner-container">
+      <p class="winner"></p>
     </div>
     <div class="choices-container">
       <button class="choice" type="submit" value="rock">Rock</button>
       <button class="choice" type="submit" value="paper">Paper</button>
       <button class="choice" type="submit" value="scissor">Scissors</button>
     </div>
-  </div>
+  </div> 
+</body>
+
 
 </html>
